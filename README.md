@@ -1,4 +1,4 @@
-# React Utility Hooks!
+# React Util Hooks!
 
 Custom React hooks for better development.
 
