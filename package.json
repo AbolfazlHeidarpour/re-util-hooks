@@ -4,7 +4,7 @@
   "private": true,
   "repository": "git://github.com/AbolfazlHeidarpour/react-util-hooks.git",
   "publishConfig": {
-    "@AbolfazlHeidarpour:registry": "https://npm.pkg.github.com"
+    "@abolfazlheidarpour:registry=https://npm.pkg.github.com:registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
