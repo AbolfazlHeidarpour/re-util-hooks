@@ -2,7 +2,7 @@
   "name": "re-util-hooks",
   "version": "0.1.0",
   "private": false,
-  "repository": "git://github.com/AbolfazlHeidarpour/react-util-hooks.git",
+  "repository": "git://github.com/AbolfazlHeidarpour/re-util-hooks.git",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
