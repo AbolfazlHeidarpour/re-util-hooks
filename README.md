@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+# React Utility Hooks!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Custom React hooks for better development.
 
-## Available Scripts
+Includes utility hooks to work more efficiency with Material UI components,
+hooks to work easier with string and number states and much more!...
 
-In the project directory, you can run:
+Fully written in TypeScript.
 
-### `npm start`
+## Example
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### useTextFields
+Custom React hook for working with MUI TextField and Input components.
+Suitable for forms with multiple inputs.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Also works with standard input element.
 
-### `npm test`
+````tsx
+const {
+    getTextFieldProps,
+    getInputProps,
+  } = useTextFields({
+    initialValues: {
+      username: '',
+      password: ''
+    },
+    initialHelperTexts: {
+      username: 'Enter user name',
+      password: 'Enter password',
+    },
+    options: {
+      textFieldProps: {
+        password: {
+          type: 'password',
+          variant: 'filled',
+        }
+      }
+    }
+  });
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  return (
+    <>
+      <Input {...getInputProps && getInputProps('username')} />
+      <TextField {...getTextFieldProps('password')} />
+    </>
+  );
+````
 
-### `npm run build`
+### useNumber
+Useful React hook whenever you needed to work with number states!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```tsx
+  const counter = useNumber();
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  return (
+    <>
+      <button onClick={() => counter.increaseBy(2)} >Increase me by 2!</button>
+      <button onClick={() => counter.decreaseBy(1)} >Decrease me by 1!</button>
+      <button onClick={() => counter.update(10)}>Update me to 10</button>
+      <button onClick={() => counter.update(20)}>Update me to 20</button>
+      <button onClick={() => counter.reset()}>Reset me to initial value</button>
+      Change me!
+      <input type={'number'} value={counter.state} onChange={counter.onChange} />
+      <Typography variant={'h4'}>{counter.state}</Typography>
+    </>
+  );
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### useString
+You need to work with string state? No worries! import and use useString!
+```tsx
+  const text = useString('Frank');
 
-### `npm run eject`
+  return (
+    <>
+      <button onClick={() => text.update('This is new string')} >Update me!</button>
+      <button onClick={() => text.reset()}>Reset me to initial value</button>
+      Change me!
+      <input type={'text'} value={text.state} onChange={text.onChange} />
+      <Typography variant={'h4'}>{text.state}</Typography>
+    </>
+  );
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### useBoolean
+Custom React hook for working with boolean states.
+For example opening a dialog, Hiding and showing an element and much more!...
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```tsx
+  const dialog = useBoolean();
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  return (
+    <>
+      <Button onClick={() => dialog.set()}>Open dialog</Button>
+      <Dialog open={dialog.state} onClose={() => dialog.reset()}>
+        <DialogTitle>This is a dialog!</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Click outside of dialog or on Close button to see how useBoolean works!</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => dialog.reset()}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+```
