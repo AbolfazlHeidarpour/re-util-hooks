@@ -26,7 +26,7 @@ const useTextFields = ({
       event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     ) =>
       setValues({ ...values, [key]: event.target.value }),
-    [options?.textFieldProps, setValues, values]
+    [setValues, values]
   );
 
   useEffect(
